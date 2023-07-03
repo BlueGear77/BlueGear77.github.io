@@ -5,4 +5,3 @@
   $to  = htmlspecialchars($_POST['to']);
 
   echo  $say, ' ', $to;
-?>
