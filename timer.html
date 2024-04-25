@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <h1>Timer</h1>
+    <div id="container">
+        <div id="timer">00:00:00</div>
+        <button id="startStopBtn" onclick="startStopTimer()">Start</button>
+        <div id="timer-text">
+            <p>The Pomodoro Technique, developed by university student Francesco Cirillo in the late 1980s, offers a simple yet effective approach to time management. The name "Pomodoro" (Italian for tomato) was inspired by the tomato-shaped kitchen timer Cirillo used during his initial experiment. Here's how it works:</p>
+            <ol>
+                <li>Set a Timer: Begin by creating a to-do list and grabbing a timer. Set the timer for 25 minutes—this is your pomodoro, a focused work session.</li>
+                <li>Single-Task Focus: During the 25-minute interval, concentrate on a single task without distractions. Whether it's studying, writing, or coding, commit fully.</li>
+                <li>Mark Your Progress: When the timer rings, mark off one pomodoro and record what you accomplished. Celebrate with a 5-minute break.</li>
+                <li>Repeat and Rest: After four pomodoros, take a longer break of <strong>15-30 minutes</strong> to recharge.</li>
+            </ol>
+            <p>Why Is It Important?</p>
+            <ul>
+                <li>Beats Procrastination: The Pomodoro Technique combats procrastination by breaking work into manageable chunks. When faced with a daunting task, knowing you only need to focus for 25 minutes makes it easier to start.</li>
+                <li>Sustained Concentration: Regular breaks prevent mental fatigue. By alternating work and rest, you maintain sustained concentration throughout the day.</li>
+                <li>Clear Progress: The method encourages you to break down complex projects into smaller steps. Each pomodoro represents tangible progress.</li>
+                <li>Time Awareness: Thinking in tomatoes (pomodoros) rather than hours helps you gauge how much you can realistically achieve in a day.</li>
+                <li>Gamified Goal-Setting: The structured intervals and ticking timer create a sense of urgency, turning productivity into a game.</li>
+            </ul>
+            <p>So, next time you're tackling a task, grab your metaphorical tomato timer and give the Pomodoro Technique a try!</p>
+        </div>
+    </div>
+
+    <script>
+        let timerInterval;
+        let totalSeconds = 0;
+        let running = false;
+
+        function startStopTimer() {
+            if (running) {
+                clearInterval(timerInterval);
+                running = false;
+                document.getElementById("startStopBtn").innerText = "Start";
+            } else {
+                timerInterval = setInterval(updateTimer, 1000);
+                running = true;
+                document.getElementById("startStopBtn").innerText = "Stop";
+            }
+        }
+
+        function updateTimer() {
+            totalSeconds++;
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById("timer").innerText = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+        }
+
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+    </script>
+</body>
+</html>
